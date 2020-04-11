@@ -4,36 +4,39 @@
  *  Description: Princeton Algorithms I, Week 1
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 public class Percolation {
 
     private boolean[][] grid;
     private int numOpenSites;
+    private WeightedQuickUnionUF ufMap;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
-        // make grid 1 index bigger so we can reference indexes 1 - n
-        grid = new boolean[n + 1][n + 1];
+        grid = new boolean[n][n];
         numOpenSites = 0;
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                grid[i][j] = false;
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                grid[row][col] = false;
             }
         }
+
+        ufMap = new WeightedQuickUnionUF(n);
     }
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
-        if (row > grid[0].length || col > grid[0].length) {
-            throw new IllegalArgumentException("Row or Col out of bounds");
-        }
+        if (this.validateArgs(row - 1, col - 1))
+            grid[row - 1][col - 1] = true;
 
-        grid[row][col] = true;
+        // link open sites to open neighbours
     }
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        return grid[row][col];
+        return grid[row - 1][col - 1];
     }
 
     // is the site (row, col) full?
@@ -52,6 +55,43 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        Percolation p = new Percolation(9);
+        Percolation p = new Percolation(5);
+        System.out.println(p.xyTo1D(0, 0));
+        System.out.println(p.xyTo1D(0, 1));
+        System.out.println(p.xyTo1D(0, 2));
+        System.out.println(p.xyTo1D(0, 3));
+        System.out.println(p.xyTo1D(0, 4));
+        System.out.println(p.xyTo1D(1, 0));
+        System.out.println(p.xyTo1D(1, 1));
+        System.out.println(p.xyTo1D(1, 2));
+        System.out.println(p.xyTo1D(1, 3));
+        System.out.println(p.xyTo1D(1, 4));
+        System.out.println(p.xyTo1D(2, 0));
+        System.out.println(p.xyTo1D(2, 1));
+        System.out.println(p.xyTo1D(2, 2));
+
+    }
+
+    /**
+     * Map x and y coordinates into a 1 dimensional array
+     *
+     * @param row
+     * @param col
+     * @return int
+     */
+    private int xyTo1D(int row, int col) {
+        if (this.validateArgs(row, col))
+            return (grid[0].length * row) + col;
+        return -1;
+    }
+
+    /**
+     * Check if arguments are valid
+     */
+    private boolean validateArgs(int row, int col) {
+        if (row > this.grid[0].length || col > this.grid[0].length) {
+            throw new IllegalArgumentException("Row or Col out of bounds");
+        }
+        return true;
     }
 }
