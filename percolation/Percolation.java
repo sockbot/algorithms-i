@@ -37,30 +37,9 @@ public class Percolation {
     public void open(int row, int col) {
         int rowIndex = row - 1;
         int colIndex = col - 1;
-        if (this.validateArgs(rowIndex, colIndex)) {
+        if (this.hasValidArgs(rowIndex, colIndex)) {
             grid[rowIndex][colIndex] = true;
-            for (int direction = 0; direction < 4; direction++) {
-                int source = this.xyTo1D(rowIndex, colIndex);
-                int target;
-                switch (direction) {
-                    case UP:
-                        target = this.xyTo1D(rowIndex - 1, colIndex);
-                        break;
-                    case RIGHT:
-                        target = this.xyTo1D(rowIndex, colIndex + 1);
-                        break;
-                    case DOWN:
-                        target = this.xyTo1D(rowIndex + 1, colIndex);
-                        break;
-                    case LEFT:
-                        target = this.xyTo1D(rowIndex, colIndex - 1);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid direction");
-
-                }
-                ufMap.union(source, target);
-            }
+            this.unionNeighbours(rowIndex, colIndex);
         }
     }
 
@@ -102,9 +81,12 @@ public class Percolation {
         // System.out.println(p.xyTo1D(2, 0));
         // System.out.println(p.xyTo1D(2, 1));
         // System.out.println(p.xyTo1D(2, 2));
-        System.out.println(p.isOpen(1, 1));
+        // System.out.println(p.isOpen(1, 1));
+        System.out.println(p.isFull(1, 1));
         p.open(1, 1);
         System.out.println(p.isOpen(1, 1));
+        System.out.println(p.isFull(1, 1));
+
     }
 
     /**
@@ -131,10 +113,41 @@ public class Percolation {
      * are using 0-indexed coordinates, we accept 1-indexed coordinates publicly but validate
      * privately based on 0-index.
      */
-    private boolean validateArgs(int row, int col) {
-        if (row > this.grid[0].length || col > this.grid[0].length) {
-            throw new IllegalArgumentException("Row or Col out of bounds");
-        }
+    private boolean hasValidArgs(int row, int col) {
+        if (row > this.grid[0].length || col > this.grid[0].length)
+            return false;
         return true;
+    }
+
+    private void unionNeighbours(int row, int col) {
+        for (int direction = 0; direction < 4; direction++) {
+            int source = this.xyTo1D(row, col);
+            int target;
+            int rowIndex = row;
+            int colIndex = col;
+            switch (direction) {
+                case UP:
+                    rowIndex = (row - 1 < 0) ? row : row - 1;
+                    break;
+                case DOWN:
+                    rowIndex = (row + 1 >= grid[0].length) ? row : row + 1;
+                    break;
+                case RIGHT:
+                    colIndex = (col + 1 >= grid[0].length) ? col : col + 1;
+                    break;
+                case LEFT:
+                    colIndex = (col - 1 < 0) ? col : col - 1;
+                    break;
+            }
+            if (row - 1 < 0)
+                target = ufMapTopIndex;
+            else if (row + 1 < grid[0].length)
+                target = ufMapBottomIndex;
+            else
+                target = xyTo1D(rowIndex, colIndex);
+            if (grid[rowIndex][colIndex]) {
+                ufMap.union(source, target);
+            }
+        }
     }
 }
