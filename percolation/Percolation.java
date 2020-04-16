@@ -11,11 +11,11 @@ public class Percolation {
     private static final int RIGHT = 1;
     private static final int DOWN = 2;
     private static final int LEFT = 3;
-    private int ufMapTopIndex;
-    private int ufMapBottomIndex;
+    private final int ufMapTopIndex;
+    private final int ufMapBottomIndex;
     private boolean[][] grid;
     private int numOpenSites;
-    private WeightedQuickUnionUF ufMap;
+    private final WeightedQuickUnionUF ufMap;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -75,7 +75,13 @@ public class Percolation {
         return ufMap.find(ufMapTopIndex) == ufMap.find(ufMapBottomIndex);
     }
 
+    /**
+     * no main class
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+        // ARE YOU READING THIS
     }
 
     /**
@@ -148,7 +154,7 @@ public class Percolation {
                 case LEFT:
                     targetRowIndex = row;
                     targetColIndex = col - 1;
-                    if (targetColIndex > 0)
+                    if (targetColIndex >= 0)
                         targetIsValid = true;
                     break;
             }
