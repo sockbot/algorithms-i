@@ -58,7 +58,9 @@ public class Percolation {
         int rowIndex = row - 1;
         int colIndex = col - 1;
         int source = xyTo1D(rowIndex, colIndex);
-        return ufMap.find(source) == ufMap.find(ufMapTopIndex);
+        if (this.hasValidArgs(rowIndex, colIndex))
+            return ufMap.find(source) == ufMap.find(ufMapTopIndex);
+        return false;
     }
 
     // returns the number of open sites
@@ -100,7 +102,7 @@ public class Percolation {
      */
     private boolean hasValidArgs(int row, int col) {
         if (row > this.grid[0].length || col > this.grid[0].length)
-            return false;
+            throw new IllegalArgumentException();
         return true;
     }
 
@@ -113,9 +115,8 @@ public class Percolation {
     private void unionNeighbours(int row, int col) {
         int source = this.xyTo1D(row, col);
         for (int direction = 0; direction < 4; direction++) {
-            int target;
-            int targetRowIndex;
-            int targetColIndex;
+            int targetRowIndex = 0;
+            int targetColIndex = 0;
             boolean targetIsValid = false;
             switch (direction) {
                 case UP:
@@ -151,7 +152,7 @@ public class Percolation {
             }
 
             if (targetIsValid && grid[targetRowIndex][targetColIndex]) {
-                target = this.xyTo1D(targetRowIndex, targetColIndex);
+                int target = this.xyTo1D(targetRowIndex, targetColIndex);
                 ufMap.union(source, target);
             }
         }
