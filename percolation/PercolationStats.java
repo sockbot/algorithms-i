@@ -9,7 +9,7 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
-    private int results[];
+    private double results[];
     private int trials;
 
     // perform independent trials on an n-by-n grid
@@ -18,26 +18,26 @@ public class PercolationStats {
         if (n <= 0 || trials <= 0)
             throw new IllegalArgumentException();
         Percolation[] percolations = new Percolation[trials];
-        this.results = new int[trials];
+        this.results = new double[trials];
         for (int i = 0; i < trials; i++) {
             percolations[i] = new Percolation(n);
             while (!percolations[i].percolates()) {
-                int randomRow = StdRandom.uniform(n - 1) + 1;
-                int randomCol = StdRandom.uniform(n - 1) + 1;
+                int randomRow = StdRandom.uniform(n) + 1;
+                int randomCol = StdRandom.uniform(n) + 1;
                 percolations[i].open(randomRow, randomCol);
             }
-            this.results[i] = percolations[i].numberOfOpenSites() / (n * n);
+            this.results[i] = (double) percolations[i].numberOfOpenSites() / (double) (n * n);
         }
     }
 
     // sample mean of percolation threshold
     public double mean() {
-        return StdStats.mean(results);
+        return StdStats.mean(this.results);
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        return StdStats.stddev(results);
+        return StdStats.stddev(this.results);
     }
 
     // low endpoint of 95% confidence interval
@@ -51,13 +51,12 @@ public class PercolationStats {
     }
 
     // test client (see below)
-    public static void main(String[] args) throws Exception {
-        System.out.print("Hello World");
+    public static void main(String[] args) {
         PercolationStats ps = new PercolationStats(Integer.parseInt(args[0]),
                                                    Integer.parseInt(args[1]));
-        System.out.printf("mean\t\t\t=\t%f", ps.mean());
-        System.out.printf("stddev\t\t\t=\t%f", ps.stddev());
-        System.out.printf("95%% confidence interval\t\t=\t[%f, %f]", ps.confidenceLo(),
+        System.out.printf("mean\t\t\t\t\t\t=\t%f\n", ps.mean());
+        System.out.printf("stddev\t\t\t\t\t\t=\t%f\n", ps.stddev());
+        System.out.printf("95%% confidence interval\t\t=\t[%f, %f]\n", ps.confidenceLo(),
                           ps.confidenceHi());
     }
 }

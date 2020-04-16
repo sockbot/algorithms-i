@@ -38,6 +38,8 @@ public class Percolation {
         int rowIndex = row - 1;
         int colIndex = col - 1;
         if (this.hasValidArgs(rowIndex, colIndex)) {
+            if (!grid[rowIndex][colIndex])
+                this.numOpenSites++;
             grid[rowIndex][colIndex] = true;
             this.unionNeighbours(rowIndex, colIndex);
         }
