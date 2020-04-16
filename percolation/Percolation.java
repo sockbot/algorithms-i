@@ -72,26 +72,6 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        Percolation p = new Percolation(5);
-        // System.out.println(p.xyTo1D(0, 0));
-        // System.out.println(p.xyTo1D(0, 1));
-        // System.out.println(p.xyTo1D(0, 2));
-        // System.out.println(p.xyTo1D(0, 3));
-        // System.out.println(p.xyTo1D(0, 4));
-        // System.out.println(p.xyTo1D(1, 0));
-        // System.out.println(p.xyTo1D(1, 1));
-        // System.out.println(p.xyTo1D(1, 2));
-        // System.out.println(p.xyTo1D(1, 3));
-        // System.out.println(p.xyTo1D(1, 4));
-        // System.out.println(p.xyTo1D(2, 0));
-        // System.out.println(p.xyTo1D(2, 1));
-        // System.out.println(p.xyTo1D(2, 2));
-        // System.out.println(p.isOpen(1, 1));
-        System.out.println(p.isFull(1, 1));
-        p.open(1, 1);
-        System.out.println(p.isOpen(1, 1));
-        System.out.println(p.isFull(1, 1));
-
     }
 
     /**
@@ -132,43 +112,47 @@ public class Percolation {
      */
     private void unionNeighbours(int row, int col) {
         int source = this.xyTo1D(row, col);
-        int target = 0;
-        int targetRowIndex = 0;
-        int targetColIndex = 0;
         for (int direction = 0; direction < 4; direction++) {
+            int target;
+            int targetRowIndex;
+            int targetColIndex;
+            boolean targetIsValid = false;
             switch (direction) {
                 case UP:
                     targetRowIndex = row - 1;
                     targetColIndex = col;
-                    target = (targetRowIndex < 0) ? ufMapTopIndex :
-                             this.xyTo1D(targetRowIndex, targetColIndex);
-                    if (targetRowIndex < 0 || grid[targetRowIndex][targetColIndex])
-                        ufMap.union(source, target);
+                    if (targetRowIndex < 0) {
+                        ufMap.union(source, ufMapTopIndex);
+                        break;
+                    }
+                    targetIsValid = true;
                     break;
                 case DOWN:
                     targetRowIndex = row + 1;
                     targetColIndex = col;
-                    target = (targetRowIndex >= grid[0].length) ? ufMapBottomIndex :
-                             this.xyTo1D(targetRowIndex, targetColIndex);
-                    if (targetRowIndex >= grid[0].length || grid[targetRowIndex][targetColIndex])
-                        ufMap.union(source, target);
+                    if (targetRowIndex >= grid[0].length) {
+                        ufMap.union(source, ufMapBottomIndex);
+                        break;
+                    }
+                    targetIsValid = true;
                     break;
                 case RIGHT:
                     targetRowIndex = row;
                     targetColIndex = col + 1;
-                    target = (targetColIndex >= grid[0].length) ? this.xyTo1D(row, col) :
-                             this.xyTo1D(targetRowIndex, targetColIndex);
-                    if (targetColIndex >= grid[0].length || grid[targetRowIndex][targetColIndex])
-                        ufMap.union(source, target);
+                    if (targetColIndex < grid[0].length)
+                        targetIsValid = true;
                     break;
                 case LEFT:
                     targetRowIndex = row;
                     targetColIndex = col - 1;
-                    target = (targetColIndex < 0) ? this.xyTo1D(row, col) :
-                             this.xyTo1D(targetRowIndex, targetColIndex);
-                    if (targetColIndex < 0 || grid[targetRowIndex][targetColIndex])
-                        ufMap.union(source, target);
+                    if (targetColIndex > 0)
+                        targetIsValid = true;
                     break;
+            }
+
+            if (targetIsValid && grid[targetRowIndex][targetColIndex]) {
+                target = this.xyTo1D(targetRowIndex, targetColIndex);
+                ufMap.union(source, target);
             }
         }
     }
