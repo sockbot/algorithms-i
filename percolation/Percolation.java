@@ -45,7 +45,12 @@ public class Percolation {
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        return grid[row - 1][col - 1];
+        int rowIndex = row - 1;
+        int colIndex = col - 1;
+        if (this.hasValidArgs(rowIndex, colIndex)) {
+            return grid[rowIndex][colIndex];
+        }
+        return false;
     }
 
     // is the site (row, col) full?
@@ -119,34 +124,51 @@ public class Percolation {
         return true;
     }
 
+    /**
+     * Joins a source coord to its open neighbours.
+     *
+     * @param row
+     * @param col
+     */
     private void unionNeighbours(int row, int col) {
+        int source = this.xyTo1D(row, col);
+        int target = 0;
+        int targetRowIndex = 0;
+        int targetColIndex = 0;
         for (int direction = 0; direction < 4; direction++) {
-            int source = this.xyTo1D(row, col);
-            int target;
-            int rowIndex = row;
-            int colIndex = col;
             switch (direction) {
                 case UP:
-                    rowIndex = (row - 1 < 0) ? row : row - 1;
+                    targetRowIndex = row - 1;
+                    targetColIndex = col;
+                    target = (targetRowIndex < 0) ? ufMapTopIndex :
+                             this.xyTo1D(targetRowIndex, targetColIndex);
+                    if (targetRowIndex < 0 || grid[targetRowIndex][targetColIndex])
+                        ufMap.union(source, target);
                     break;
                 case DOWN:
-                    rowIndex = (row + 1 >= grid[0].length) ? row : row + 1;
+                    targetRowIndex = row + 1;
+                    targetColIndex = col;
+                    target = (targetRowIndex >= grid[0].length) ? ufMapBottomIndex :
+                             this.xyTo1D(targetRowIndex, targetColIndex);
+                    if (targetRowIndex >= grid[0].length || grid[targetRowIndex][targetColIndex])
+                        ufMap.union(source, target);
                     break;
                 case RIGHT:
-                    colIndex = (col + 1 >= grid[0].length) ? col : col + 1;
+                    targetRowIndex = row;
+                    targetColIndex = col + 1;
+                    target = (targetColIndex >= grid[0].length) ? this.xyTo1D(row, col) :
+                             this.xyTo1D(targetRowIndex, targetColIndex);
+                    if (targetColIndex >= grid[0].length || grid[targetRowIndex][targetColIndex])
+                        ufMap.union(source, target);
                     break;
                 case LEFT:
-                    colIndex = (col - 1 < 0) ? col : col - 1;
+                    targetRowIndex = row;
+                    targetColIndex = col - 1;
+                    target = (targetColIndex < 0) ? this.xyTo1D(row, col) :
+                             this.xyTo1D(targetRowIndex, targetColIndex);
+                    if (targetColIndex < 0 || grid[targetRowIndex][targetColIndex])
+                        ufMap.union(source, target);
                     break;
-            }
-            if (row - 1 < 0)
-                target = ufMapTopIndex;
-            else if (row + 1 < grid[0].length)
-                target = ufMapBottomIndex;
-            else
-                target = xyTo1D(rowIndex, colIndex);
-            if (grid[rowIndex][colIndex]) {
-                ufMap.union(source, target);
             }
         }
     }
