@@ -53,7 +53,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PercolationVisualizer">
+  <component name="RunManager" selected="Application.PercolationStats">
     <configuration name="HelloWorld" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="HelloWorld" />
       <module name="Algorithms, Part I" />
@@ -62,12 +62,19 @@
     <configuration name="Percolation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Percolation" />
       <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="input50.txt" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PercolationStats" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="PercolationStats" />
+      <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="4 1" />
       <method v="2" />
     </configuration>
     <configuration name="PercolationVisualizer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PercolationVisualizer" />
       <module name="Algorithms, Part I" />
-      <option name="PROGRAM_PARAMETERS" value="input20.txt" />
+      <option name="PROGRAM_PARAMETERS" value="jerry47.txt" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -77,6 +84,7 @@
       <item itemvalue="Application.HelloWorld" />
       <item itemvalue="Application.Percolation" />
       <item itemvalue="Application.PercolationVisualizer" />
+      <item itemvalue="Application.PercolationStats" />
     </list>
     <recent_temporary>
       <list>
