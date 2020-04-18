@@ -52,13 +52,6 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException();
     }
 
-    private void resize(int capacity) {
-        Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < numItems; i++)
-            copy[i] = deque[i];
-        deque = copy;
-    }
-
     // remove and return the item from the front
     public Item removeFirst() {
         if (isEmpty())
@@ -95,5 +88,12 @@ public class Deque<Item> implements Iterable<Item> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
+    }
+
+    private void resize(int capacity) {
+        Item[] copy = (Item[]) new Object[capacity];
+        for (int i = 0; i < numItems; i++)
+            copy[i] = deque[i];
+        deque = copy;
     }
 }
