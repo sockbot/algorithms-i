@@ -7,21 +7,21 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Deque<Item> {
+public class Deque<Item> implements Iterable<Item> {
 
     private Item[] deque;
     private int numItems = 0; // number of Items in deque
 
     // construct an empty deque using arrays
     public Deque() {
-        this.deque = (Item[]) new Object[1];
+        deque = (Item[]) new Object[1];
     }
 
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("Deque size is %d\n", d.size());
+        System.out.printf("Number of items in Deque %d\n", d.size());
     }
 
     // is the deque empty?
@@ -41,6 +41,9 @@ public class Deque<Item> {
     public void addFirst(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
+        if (numItems == deque.length)
+            resize(2 * deque.length); // double the size of the deque array
+        deque[numItems++] = item;
     }
 
     // add the item to the back
@@ -49,16 +52,16 @@ public class Deque<Item> {
             throw new IllegalArgumentException();
     }
 
-    // remove and return the item from the front
-    public Item removeFirst() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
-        return null;
+    private void resize(int capacity) {
+        Item[] copy = (Item[]) new Object[capacity];
+        for (int i = 0; i < numItems; i++)
+            copy[i] = deque[i];
+        deque = copy;
     }
 
-    // remove and return the item from the back
-    public Item removeLast() {
-        if (this.isEmpty())
+    // remove and return the item from the front
+    public Item removeFirst() {
+        if (isEmpty())
             throw new NoSuchElementException();
         return null;
     }
@@ -85,5 +88,12 @@ public class Deque<Item> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
+    }
+
+    // remove and return the item from the back
+    public Item removeLast() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return null;
     }
 }
