@@ -21,7 +21,26 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("Number of items in Deque %d\n", d.size());
+        System.out.printf("%d items in Deque\n", d.size());
+        System.out.printf("Deque length is %d\n", d.length());
+        System.out.println("--------------------------------");
+        System.out.println("Adding 100 to Deque");
+        d.addFirst(100);
+        System.out.printf("Deque is empty: %b\n", d.isEmpty());
+        System.out.printf("%d items in Deque\n", d.size());
+        System.out.printf("Deque length is %d\n", d.length());
+        System.out.println("--------------------------------");
+        System.out.println("Adding 200 to Deque");
+        d.addFirst(200);
+        System.out.printf("Deque is empty: %b\n", d.isEmpty());
+        System.out.printf("%d items in Deque\n", d.size());
+        System.out.printf("Deque length is %d\n", d.length());
+        System.out.println("--------------------------------");
+        System.out.println("Adding 300 to Deque");
+        d.addFirst(300);
+        System.out.printf("Deque is empty: %b\n", d.isEmpty());
+        System.out.printf("%d items in Deque\n", d.size());
+        System.out.printf("Deque length is %d\n", d.length());
     }
 
     // is the deque empty?
@@ -30,6 +49,11 @@ public class Deque<Item> implements Iterable<Item> {
             if (d != null)
                 return false;
         return true;
+    }
+
+    // Temporary public method for debugging
+    public int length() {
+        return deque.length;
     }
 
     // return the number of items on the deque
