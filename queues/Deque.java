@@ -71,6 +71,13 @@ public class Deque<Item> implements Iterable<Item> {
         return new ReverseArrayIterator();
     }
 
+    // remove and return the item from the back
+    public Item removeLast() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return null;
+    }
+
     private class ReverseArrayIterator implements Iterator<Item> {
 
         private int i = numItems;
@@ -88,12 +95,5 @@ public class Deque<Item> implements Iterable<Item> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
-    }
-
-    // remove and return the item from the back
-    public Item removeLast() {
-        if (isEmpty())
-            throw new NoSuchElementException();
-        return null;
     }
 }
