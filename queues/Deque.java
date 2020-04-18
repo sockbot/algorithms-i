@@ -19,12 +19,11 @@ public class Deque<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
-        d.isEmpty();
+        System.out.printf("Deque is empty: %b", d.isEmpty());
     }
 
     // is the deque empty?
     public boolean isEmpty() {
-        System.out.printf("Deque length is %d", this.deque.length);
         return (this.deque.length == 0);
     }
 
@@ -61,6 +60,21 @@ public class Deque<Item> {
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator() {
-        return null;
+        return new ReverseArrayIterator();
+    }
+
+    private class ReverseArrayIterator implements Iterator<Item> {
+
+        public boolean hasNext() {
+            return false;
+        }
+
+        public Item next() {
+            return null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }
