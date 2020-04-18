@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 public class Deque<Item> {
 
     private Item[] deque;
+    private int numItems = 0; // number of Items in deque
 
     // construct an empty deque using arrays
     public Deque() {
@@ -19,17 +20,21 @@ public class Deque<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
-        System.out.printf("Deque is empty: %b", d.isEmpty());
+        System.out.printf("Deque is empty: %b\n", d.isEmpty());
+        System.out.printf("Deque size is %d\n", d.size());
     }
 
     // is the deque empty?
     public boolean isEmpty() {
-        return (this.deque.length == 0);
+        for (Item d : deque)
+            if (d != null)
+                return false;
+        return true;
     }
 
     // return the number of items on the deque
     public int size() {
-        return 0;
+        return numItems;
     }
 
     // add the item to the front
@@ -65,12 +70,16 @@ public class Deque<Item> {
 
     private class ReverseArrayIterator implements Iterator<Item> {
 
+        private int i = numItems;
+
         public boolean hasNext() {
-            return false;
+            return i > 0;
         }
 
         public Item next() {
-            return null;
+            if (i-- < 0)
+                throw new NoSuchElementException();
+            return deque[--i];
         }
 
         public void remove() {
