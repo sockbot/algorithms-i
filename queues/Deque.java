@@ -23,26 +23,22 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque\n", d.size());
-        System.out.printf("Deque length is %d\n", d.length());
+        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
         System.out.println("--------------------------------");
         System.out.println("Adding 100 to Deque");
         d.addLast(100);
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque\n", d.size());
-        System.out.printf("Deque length is %d\n", d.length());
+        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
         System.out.println("--------------------------------");
         System.out.println("Adding 200 to Deque");
         d.addLast(200);
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque\n", d.size());
-        System.out.printf("Deque length is %d\n", d.length());
+        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
         System.out.println("--------------------------------");
         System.out.println("Adding 300 to Deque");
         d.addLast(300);
         System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque\n", d.size());
-        System.out.printf("Deque length is %d\n", d.length());
+        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
     }
 
     // is the deque empty?
@@ -86,7 +82,7 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
-        return null;
+        return deque[--tail];
     }
 
     // add the item to the front
