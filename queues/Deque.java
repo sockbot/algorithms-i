@@ -36,6 +36,17 @@ public class Deque<Item> implements Iterable<Item> {
         d.printStatus();
         System.out.printf("removeLast %d from Deque\n", d.removeLast());
         d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.println("addFirst 400 to Deque");
+        d.addFirst(400);
+        d.printStatus();
+        System.out.println("addFirst 500 to Deque");
+        d.addFirst(500);
+        d.printStatus();
+        System.out.println("addFirst 600 to Deque");
+        d.addFirst(600);
+        d.printStatus();
     }
 
     private void printStatus() {
@@ -60,6 +71,17 @@ public class Deque<Item> implements Iterable<Item> {
     // return the number of items on the deque
     public int size() {
         return size;
+    }
+
+    // add the item to the front
+    public void addFirst(Item item) {
+        if (item == null)
+            throw new IllegalArgumentException();
+        if (size() == deque.length)
+            resize(2 * deque.length); // double the size of the deque array
+        head = (head - 1 + deque.length) % deque.length;
+        deque[head] = item;
+        size++;
     }
 
     // add the item to the back
@@ -92,15 +114,6 @@ public class Deque<Item> implements Iterable<Item> {
         if (size() == deque.length / 4)
             resize(deque.length / 2);
         return last;
-    }
-
-    // add the item to the front
-    public void addFirst(Item item) {
-        if (item == null)
-            throw new IllegalArgumentException();
-        // if (size() == deque.length)
-        //     resize(2 * deque.length); // double the size of the deque array
-        // deque[head--] = item;
     }
 
     // return an iterator over items in order from front to back
@@ -138,5 +151,7 @@ public class Deque<Item> implements Iterable<Item> {
             copy[copyIndex] = deque[dequeIndex];
         }
         deque = copy;
+        // head = 0;
+        // tail = size();
     }
 }
