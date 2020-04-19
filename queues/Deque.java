@@ -23,14 +23,18 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
         d.printStatus();
-        System.out.println("Adding 100 to Deque");
+        System.out.println("addLast 100 to Deque");
         d.addLast(100);
         d.printStatus();
-        System.out.println("Adding 200 to Deque");
+        System.out.println("addLast 200 to Deque");
         d.addLast(200);
         d.printStatus();
-        System.out.println("Adding 300 to Deque");
+        System.out.println("addLast 300 to Deque");
         d.addLast(300);
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
         d.printStatus();
     }
 
@@ -66,8 +70,9 @@ public class Deque<Item> implements Iterable<Item> {
             resize(2 * deque.length); // double the size of the deque array
         int dequeIndex = tail % deque.length;
         deque[dequeIndex] = item;
-        tail++;
         size++;
+        if (size() > 1)
+            tail++;
     }
 
     // remove and return the item from the front
@@ -81,9 +86,12 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
+        size--;
+        Item last = deque[tail - 1];
+        deque[--tail] = null;
         if (size() == deque.length / 4)
             resize(deque.length / 2);
-        return deque[--tail];
+        return last;
     }
 
     // add the item to the front
