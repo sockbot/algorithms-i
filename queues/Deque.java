@@ -71,19 +71,6 @@ public class Deque<Item> implements Iterable<Item> {
         deque[tail++] = item;
     }
 
-    private void resize(int capacity) {
-        Item[] copy = (Item[]) new Object[capacity];
-        // copy size() if shrinking capacity, copy deque.length if growing capacity
-        int length = Math.min(size(), deque.length);
-        for (int i = 0; i < length; i++) {
-            int copyIndex = i + (length / 2); // start indexing with equal offset on both ends
-            int dequeIndex = (copyIndex + head)
-                    % length; // reindex the head and tail if they've wrapped around the index
-            copy[copyIndex] = deque[dequeIndex];
-        }
-        deque = copy;
-    }
-
     // remove and return the item from the front
     public Item removeFirst() {
         if (isEmpty())
@@ -130,5 +117,18 @@ public class Deque<Item> implements Iterable<Item> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
+    }
+
+    private void resize(int capacity) {
+        Item[] copy = (Item[]) new Object[capacity];
+        // copy size() if shrinking capacity, copy deque.length if growing capacity
+        int length = Math.min(size(), deque.length);
+        for (int i = 0; i < length; i++) {
+            int copyIndex = i + (length / 2); // start indexing with equal offset on both ends
+            int dequeIndex = (copyIndex + head)
+                    % length; // reindex the head and tail if they've wrapped around the index
+            copy[copyIndex] = deque[dequeIndex];
+        }
+        deque = copy;
     }
 }
