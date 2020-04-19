@@ -11,11 +11,12 @@ public class Deque<Item> implements Iterable<Item> {
 
     private Item[] deque;
     private int head = 0;
-    private int tail = 0;
+    private int tail = 1;
+    private int size = 0;
 
     // construct an empty deque using arrays
     public Deque() {
-        deque = (Item[]) new Object[1];
+        deque = (Item[]) new Object[2];
     }
 
     // unit testing (required)
@@ -59,7 +60,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // return the number of items on the deque
     public int size() {
-        return tail - head;
+        return size;
     }
 
     // add the item to the back
@@ -68,7 +69,10 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException();
         if (size() == deque.length)
             resize(2 * deque.length); // double the size of the deque array
-        deque[tail++] = item;
+        int dequeIndex = tail % deque.length;
+        deque[dequeIndex] = item;
+        tail++;
+        size++;
     }
 
     // remove and return the item from the front
@@ -123,10 +127,9 @@ public class Deque<Item> implements Iterable<Item> {
         Item[] copy = (Item[]) new Object[capacity];
         // copy size() if shrinking capacity, copy deque.length if growing capacity
         int length = Math.min(size(), deque.length);
-        for (int i = 0; i < length; i++) {
-            int copyIndex = i + (length / 2); // start indexing with equal offset on both ends
-            int dequeIndex = (copyIndex + head)
-                    % length; // reindex the head and tail if they've wrapped around the index
+        for (int copyIndex = 0; copyIndex < length; copyIndex++) {
+            // use modulo to wrap dequeIndex around to beginning
+            int dequeIndex = (copyIndex + head) % length;
             copy[copyIndex] = deque[dequeIndex];
         }
         deque = copy;
