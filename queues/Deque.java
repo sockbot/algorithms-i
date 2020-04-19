@@ -16,29 +16,28 @@ public class Deque<Item> implements Iterable<Item> {
 
     // construct an empty deque using arrays
     public Deque() {
-        deque = (Item[]) new Object[2];
+        deque = (Item[]) new Object[1];
     }
 
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
-        System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
-        System.out.println("--------------------------------");
+        d.printStatus();
         System.out.println("Adding 100 to Deque");
         d.addLast(100);
-        System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
-        System.out.println("--------------------------------");
+        d.printStatus();
         System.out.println("Adding 200 to Deque");
         d.addLast(200);
-        System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
-        System.out.println("--------------------------------");
+        d.printStatus();
         System.out.println("Adding 300 to Deque");
         d.addLast(300);
-        System.out.printf("Deque is empty: %b\n", d.isEmpty());
-        System.out.printf("%d items in Deque, Deque length is %d\n", d.size(), d.length());
+        d.printStatus();
+    }
+
+    private void printStatus() {
+        System.out.printf("Deque is empty: %b\n", isEmpty());
+        System.out.printf("%d items in Deque, Deque length is %d\n", size(), length());
+        System.out.println("--------------------------------");
     }
 
     // is the deque empty?
@@ -82,6 +81,8 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
+        if (size() == deque.length / 4)
+            resize(deque.length / 2);
         return deque[--tail];
     }
 
