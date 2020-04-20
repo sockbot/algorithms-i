@@ -103,13 +103,10 @@ public class Deque<Item> implements Iterable<Item> {
         d.printStatus();
         System.out.printf("removeLast %d from Deque\n", d.removeLast());
         d.printStatus();
-        // System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        // d.printStatus();
     }
 
     private void printStatus() {
         System.out.printf("Deque is empty: %b\n", isEmpty());
-        // System.out.printf("%d items in Deque, Deque length is %d\n", size(), length());
         System.out.println("--------------------------------");
     }
 
@@ -120,11 +117,6 @@ public class Deque<Item> implements Iterable<Item> {
                 return false;
         return true;
     }
-
-    // Temporary public method for debugging
-    // public int length() {
-    //     return deque.length;
-    // }
 
     // return the number of items on the deque
     public int size() {
