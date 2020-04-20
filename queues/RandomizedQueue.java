@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -31,13 +32,20 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // add the item
-    public void enqueue(Item item) {
+    public Item enqueue(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
         if (size() == queue.length)
             resize(2 * size());
         queue[nextOpen] = item;
         size++;
+        if (size() > 1)
+            nextOpen++;
+        return item;
+    }
+
+    public int length() {
+        return queue.length;
     }
 
     // remove and return a random item
@@ -66,14 +74,33 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         RandomizedQueue<Integer> bag = new RandomizedQueue<Integer>();
-        System.out.printf("Bag is empty: %b\n", bag.isEmpty());
-        System.out.printf("Bag is size: %d\n", bag.size());
-        System.out.println("--------------------------------");
-        bag.enqueue(100);
-        System.out.printf("Bag is empty: %b\n", bag.isEmpty());
-        System.out.printf("Bag is size: %d\n", bag.size());
-        System.out.println("--------------------------------");
+        bag.printStatus();
+        System.out.printf("Adding %d to bag\n", bag.enqueue(100));
+        bag.printStatus();
         System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Adding %d to bag\n", bag.enqueue(200));
+        bag.printStatus();
+        System.out.printf("Adding %d to bag\n", bag.enqueue(300));
+        bag.printStatus();
+        System.out.printf("Adding %d to bag\n", bag.enqueue(400));
+        bag.printStatus();
+        System.out.printf("Adding %d to bag\n", bag.enqueue(500));
+        bag.printStatus();
+        System.out.printf("Adding %d to bag\n", bag.enqueue(600));
+        bag.printStatus();
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+        System.out.printf("Bag sampled %d\n", bag.sample());
+    }
+
+    private void printStatus() {
+        System.out.printf("Bag is empty: %b\n", isEmpty());
+        System.out.printf("%s\n", Arrays.toString(queue));
+        System.out.println("--------------------------------");
     }
 
     private class RandomIterator implements Iterator<Item> {
