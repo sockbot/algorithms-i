@@ -67,7 +67,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         RandomizedQueue<Integer> bag = new RandomizedQueue<Integer>();
         System.out.printf("Bag is empty: %b\n", bag.isEmpty());
+        System.out.printf("Bag is size: %d\n", bag.size());
         System.out.println("--------------------------------");
+        bag.enqueue(100);
+        System.out.printf("Bag is empty: %b\n", bag.isEmpty());
+        System.out.printf("Bag is size: %d\n", bag.size());
+        System.out.println("--------------------------------");
+        System.out.printf("Bag sampled %d\n", bag.sample());
     }
 
     private class RandomIterator implements Iterator<Item> {
