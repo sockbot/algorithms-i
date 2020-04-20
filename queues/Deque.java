@@ -38,14 +38,20 @@ public class Deque<Item> implements Iterable<Item> {
         d.printStatus();
         System.out.printf("removeLast %d from Deque\n", d.removeLast());
         d.printStatus();
-        System.out.println("addFirst 400 to Deque");
-        d.addFirst(400);
+        System.out.println("addFirst 600 to Deque");
+        d.addFirst(600);
         d.printStatus();
         System.out.println("addFirst 500 to Deque");
         d.addFirst(500);
         d.printStatus();
-        System.out.println("addFirst 600 to Deque");
-        d.addFirst(600);
+        System.out.println("addFirst 400 to Deque");
+        d.addFirst(400);
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
         d.printStatus();
     }
 
@@ -101,7 +107,13 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeFirst() {
         if (isEmpty())
             throw new NoSuchElementException();
-        return null;
+        size--;
+        Item first = deque[head];
+        deque[head] = null;
+        head = (head + 1) % deque.length;
+        if (size() == deque.length / 4)
+            resize(deque.length / 2);
+        return first;
     }
 
     // remove and return the item from the back
@@ -146,12 +158,17 @@ public class Deque<Item> implements Iterable<Item> {
         // copy size() if shrinking capacity, copy deque.length if growing capacity
         int length = Math.min(size(), deque.length);
         for (int copyIndex = 0; copyIndex < length; copyIndex++) {
-            // use modulo to wrap dequeIndex around to beginning
-            int dequeIndex = (copyIndex + head) % length;
+            int dequeIndex;
+            if (head < tail)
+                // if head is below tail, just count up normally
+                dequeIndex = copyIndex + head;
+            else
+                // head and tail are reversed, so use modulo to wrap dequeIndex around to beginning
+                dequeIndex = (copyIndex + head) % length;
             copy[copyIndex] = deque[dequeIndex];
         }
         deque = copy;
-        // head = 0;
-        // tail = size();
+        head = 0;
+        tail = size();
     }
 }
