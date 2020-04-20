@@ -32,6 +32,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // add the item
     public void enqueue(Item item) {
+        if (item == null)
+            throw new IllegalArgumentException();
         if (size() == queue.length)
             resize(2 * size());
         queue[nextOpen] = item;
@@ -40,6 +42,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // remove and return a random item
     public Item dequeue() {
+        if (isEmpty())
+            throw new NoSuchElementException();
         if (size() < queue.length / 4)
             resize(size() / 2);
         Item item = queue[StdRandom.uniform(size())];
@@ -49,6 +53,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return a random item (but do not remove it)
     public Item sample() {
+        if (isEmpty())
+            throw new NoSuchElementException();
         return queue[StdRandom.uniform(size())];
     }
 
@@ -64,17 +70,25 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private class RandomIterator implements Iterator<Item> {
 
-        private int m = 0;
-        private int n = 0;
+        private Item[] copy;
+        private int copyIndex = nextOpen;
+
+        public RandomIterator() {
+            copy = (Item[]) new Object();
+            int length = Math.min(size(), queue.length);
+            for (int i = 0; i < length; i++)
+                copy[i] = queue[i];
+            StdRandom.shuffle(copy);
+        }
 
         public boolean hasNext() {
-            return n > m;
+            return copyIndex > 0;
         }
 
         public Item next() {
-            if (n-- < m)
+            if (!hasNext())
                 throw new NoSuchElementException();
-            return queue[--n];
+            return copy[--copyIndex];
         }
 
         public void remove() {
