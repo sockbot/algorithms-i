@@ -53,11 +53,63 @@ public class Deque<Item> implements Iterable<Item> {
         d.printStatus();
         System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
         d.printStatus();
+        System.out.println("addLast 100 to Deque");
+        d.addLast(100);
+        d.printStatus();
+        System.out.println("addLast 200 to Deque");
+        d.addLast(200);
+        d.printStatus();
+        System.out.println("addLast 300 to Deque");
+        d.addLast(300);
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.println("addFirst 600 to Deque");
+        d.addFirst(600);
+        d.printStatus();
+        System.out.println("addFirst 500 to Deque");
+        d.addFirst(500);
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.println("addLast 100 to Deque");
+        d.addLast(100);
+        d.printStatus();
+        System.out.println("addLast 200 to Deque");
+        d.addLast(200);
+        d.printStatus();
+        System.out.println("addFirst 600 to Deque");
+        d.addFirst(600);
+        d.printStatus();
+        System.out.println("addFirst 500 to Deque");
+        d.addFirst(500);
+        d.printStatus();
+        System.out.println("addLast 300 to Deque");
+        d.addLast(300);
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        d.printStatus();
+        System.out.printf("removeLast %d from Deque\n", d.removeLast());
+        d.printStatus();
+        // System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
+        // d.printStatus();
     }
 
     private void printStatus() {
         System.out.printf("Deque is empty: %b\n", isEmpty());
-        System.out.printf("%d items in Deque, Deque length is %d\n", size(), length());
+        // System.out.printf("%d items in Deque, Deque length is %d\n", size(), length());
         System.out.println("--------------------------------");
     }
 
@@ -70,9 +122,9 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     // Temporary public method for debugging
-    public int length() {
-        return deque.length;
-    }
+    // public int length() {
+    //     return deque.length;
+    // }
 
     // return the number of items on the deque
     public int size() {
