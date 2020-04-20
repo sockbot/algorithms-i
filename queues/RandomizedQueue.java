@@ -17,7 +17,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // construct an empty randomized queue
     public RandomizedQueue() {
-        queue = (Item[]) new Object();
+        queue = (Item[]) new Object[1];
     }
 
     // is the randomized queue empty?
@@ -65,7 +65,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {
-
+        RandomizedQueue<Integer> bag = new RandomizedQueue<Integer>();
+        System.out.printf("Bag is empty: %b\n", bag.isEmpty());
+        System.out.println("--------------------------------");
     }
 
     private class RandomIterator implements Iterator<Item> {
