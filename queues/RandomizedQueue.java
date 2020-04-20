@@ -44,16 +44,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return item;
     }
 
-    public int length() {
-        return queue.length;
-    }
-
     // remove and return a random item
     public Item dequeue() {
         if (isEmpty())
             throw new NoSuchElementException();
         if (size() < queue.length / 4)
             resize(size() / 2);
+        // grab a random item from the bag
+        // delete the item from the bag
+        // make sure the remaining items are at the front of the array
         Item item = queue[StdRandom.uniform(size())];
         size--;
         return item;
@@ -100,7 +99,22 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             // bag.printStatus();
             System.out.println(item);
         }
-
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
+        System.out.printf("Removing %d from bag\n", bag.dequeue());
+        bag.printStatus();
     }
 
     private void printStatus() {
