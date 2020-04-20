@@ -95,6 +95,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         System.out.printf("Bag sampled %d\n", bag.sample());
         System.out.printf("Bag sampled %d\n", bag.sample());
         System.out.printf("Bag sampled %d\n", bag.sample());
+
+        for (Integer item : bag) {
+            // bag.printStatus();
+            System.out.println(item);
+        }
+
     }
 
     private void printStatus() {
@@ -105,11 +111,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private class RandomIterator implements Iterator<Item> {
 
-        private Item[] copy;
+        private Item[] copy = (Item[]) new Object[size()];
         private int copyIndex = nextOpen;
 
         public RandomIterator() {
-            copy = (Item[]) new Object();
             int length = Math.min(size(), queue.length);
             for (int i = 0; i < length; i++)
                 copy[i] = queue[i];
