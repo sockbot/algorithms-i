@@ -22,87 +22,38 @@ public class Deque<Item> implements Iterable<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
-        d.printStatus();
-        System.out.println("addLast 100 to Deque");
         d.addLast(100);
-        d.printStatus();
-        System.out.println("addLast 200 to Deque");
         d.addLast(200);
-        d.printStatus();
-        System.out.println("addLast 300 to Deque");
         d.addLast(300);
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.println("addFirst 600 to Deque");
+        d.removeLast();
+        d.removeLast();
+        d.removeLast();
         d.addFirst(600);
-        d.printStatus();
-        System.out.println("addFirst 500 to Deque");
         d.addFirst(500);
-        d.printStatus();
-        System.out.println("addFirst 400 to Deque");
         d.addFirst(400);
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.println("addLast 100 to Deque");
+        d.removeFirst();
+        d.removeFirst();
+        d.removeFirst();
         d.addLast(100);
-        d.printStatus();
-        System.out.println("addLast 200 to Deque");
         d.addLast(200);
-        d.printStatus();
-        System.out.println("addLast 300 to Deque");
         d.addLast(300);
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.println("addFirst 600 to Deque");
         d.addFirst(600);
-        d.printStatus();
-        System.out.println("addFirst 500 to Deque");
+        d.removeLast();
         d.addFirst(500);
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.println("addLast 100 to Deque");
         d.addLast(100);
-        d.printStatus();
-        System.out.println("addLast 200 to Deque");
+        d.removeLast();
         d.addLast(200);
-        d.printStatus();
-        System.out.println("addFirst 600 to Deque");
         d.addFirst(600);
-        d.printStatus();
-        System.out.println("addFirst 500 to Deque");
+        d.removeLast();
         d.addFirst(500);
-        d.printStatus();
-        System.out.println("addLast 300 to Deque");
+        d.removeFirst();
+        d.removeFirst();
         d.addLast(300);
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
-        System.out.printf("removeFirst %d from Deque\n", d.removeFirst());
-        d.printStatus();
-        System.out.printf("removeLast %d from Deque\n", d.removeLast());
-        d.printStatus();
+        d.removeFirst();
+        d.removeFirst();
+        d.removeLast();
+        d.removeLast();
+        d.removeFirst();
     }
 
     private void printStatus() {
@@ -112,10 +63,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty() {
-        for (Item d : deque)
-            if (d != null)
-                return false;
-        return true;
+        return size == 0;
     }
 
     // return the number of items on the deque

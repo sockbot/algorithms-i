@@ -32,7 +32,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // add the item
-    public Item enqueue(Item item) {
+    public void enqueue(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
         if (size() == queue.length)
@@ -41,7 +41,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         size++;
         if (size() > 1)
             nextOpen++;
-        return item;
     }
 
     // remove and return a random item
@@ -76,48 +75,24 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         RandomizedQueue<Integer> bag = new RandomizedQueue<Integer>();
-        bag.printStatus();
-        System.out.printf("Adding %d to bag\n", bag.enqueue(100));
-        bag.printStatus();
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Adding %d to bag\n", bag.enqueue(200));
-        bag.printStatus();
-        System.out.printf("Adding %d to bag\n", bag.enqueue(300));
-        bag.printStatus();
-        System.out.printf("Adding %d to bag\n", bag.enqueue(400));
-        bag.printStatus();
-        System.out.printf("Adding %d to bag\n", bag.enqueue(500));
-        bag.printStatus();
-        System.out.printf("Adding %d to bag\n", bag.enqueue(600));
-        bag.printStatus();
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-        System.out.printf("Bag sampled %d\n", bag.sample());
-
-        for (Integer item : bag) {
-            // bag.printStatus();
-            System.out.println(item);
-        }
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
-        System.out.printf("Removing %d from bag\n", bag.dequeue());
-        bag.printStatus();
+        bag.enqueue(100);
+        bag.enqueue(200);
+        bag.enqueue(300);
+        bag.enqueue(400);
+        bag.enqueue(500);
+        bag.enqueue(600);
+        bag.sample();
+        bag.sample();
+        bag.sample();
+        bag.sample();
+        bag.sample();
+        bag.sample();
+        bag.dequeue();
+        bag.dequeue();
+        bag.dequeue();
+        bag.dequeue();
+        bag.dequeue();
+        bag.dequeue();
     }
 
     private void printStatus() {
