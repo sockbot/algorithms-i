@@ -48,12 +48,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue() {
         if (isEmpty())
             throw new NoSuchElementException();
-        if (size() < queue.length / 4)
-            resize(size() / 2);
+        if (size() <= queue.length / 4)
+            resize(queue.length / 2);
         // grab a random item from the bag
-        // delete the item from the bag
-        // make sure the remaining items are at the front of the array
-        Item item = queue[StdRandom.uniform(size())];
+        int random = StdRandom.uniform(size());
+        Item item = queue[random];
+        // squeeze out that item by moving the following items forward one index
+        for (int i = random; i < size(); i++) {
+            queue[i] = (i == size() - 1) ? null : queue[i + 1];
+        }
         size--;
         return item;
     }
@@ -118,7 +121,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     private void printStatus() {
-        System.out.printf("Bag is empty: %b\n", isEmpty());
+        System.out.printf("Bag size %d is empty: %b\n", size(), isEmpty());
         System.out.printf("%s\n", Arrays.toString(queue));
         System.out.println("--------------------------------");
     }
