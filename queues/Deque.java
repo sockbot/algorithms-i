@@ -4,6 +4,7 @@
  *  Description: Princeton Algorithms I, Queues
  **************************************************************************** */
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -54,10 +55,20 @@ public class Deque<Item> implements Iterable<Item> {
         d.removeLast();
         d.removeLast();
         d.removeFirst();
+
+        Deque<Integer> deque = new Deque<Integer>();
+        deque.printStatus();
+        deque.addFirst(1);
+        deque.printStatus();
+        deque.removeFirst();
+        deque.printStatus();
+        deque.addFirst(3);
+        deque.printStatus();
     }
 
     private void printStatus() {
         System.out.printf("Deque is empty: %b\n", isEmpty());
+        System.out.println(Arrays.toString(deque));
         System.out.println("--------------------------------");
     }
 
@@ -103,7 +114,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item first = deque[head];
         deque[head] = null;
         head = (head + 1) % deque.length;
-        if (size() == deque.length / 4)
+        if (size() != 0 && size() <= deque.length / 4)
             resize(deque.length / 2);
         return first;
     }
@@ -127,7 +138,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     private class ReverseArrayIterator implements Iterator<Item> {
 
-        private int m = head;
+        private final int m = head;
         private int n = tail;
 
         public boolean hasNext() {

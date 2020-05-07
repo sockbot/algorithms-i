@@ -6,7 +6,6 @@
 
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -95,15 +94,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         bag.dequeue();
     }
 
-    private void printStatus() {
-        System.out.printf("Bag size %d is empty: %b\n", size(), isEmpty());
-        System.out.printf("%s\n", Arrays.toString(queue));
-        System.out.println("--------------------------------");
-    }
+    // private void printStatus() {
+    //     System.out.printf("Bag size %d is empty: %b\n", size(), isEmpty());
+    //     System.out.printf("%s\n", Arrays.toString(queue));
+    //     System.out.println("--------------------------------");
+    // }
 
     private class RandomIterator implements Iterator<Item> {
 
-        private Item[] copy = (Item[]) new Object[size()];
+        private final Item[] copy = (Item[]) new Object[size()];
         private int copyIndex = nextOpen;
 
         public RandomIterator() {
