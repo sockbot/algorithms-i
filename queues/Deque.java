@@ -11,6 +11,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     private Node first;
     private Node last;
+    private Node penultimate;
     private int size = 0;
 
     // construct an empty deque
@@ -53,6 +54,7 @@ public class Deque<Item> implements Iterable<Item> {
         this.size++;
         if (this.size == 2) {
             last = first.next;
+            penultimate = first;
         }
     }
 
@@ -73,6 +75,7 @@ public class Deque<Item> implements Iterable<Item> {
             newLast.item = item;
             newLast.next = null;
             last.next = newLast;
+            penultimate = last;
             last = newLast;
         }
         this.size++;
@@ -88,6 +91,9 @@ public class Deque<Item> implements Iterable<Item> {
         // move the first pointer to the new first Node
         first = first.next;
         this.size--;
+        if (this.size == 1) {
+            penultimate = null;
+        }
         // if this is the last Node in the list, null the last pointer too
         if (this.isEmpty()) {
             last = null;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="implement addLast and unit tests">
+    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="implement removeFirst and unit tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.java" afterDir="false" />
     </list>
@@ -90,6 +90,7 @@
     <MESSAGE value="implement edge cases for addFirst and tests" />
     <MESSAGE value="change tests to assert true&#10;fix last pointer when adding to empty list" />
     <MESSAGE value="implement addLast and unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement addLast and unit tests" />
+    <MESSAGE value="implement removeFirst and unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement removeFirst and unit tests" />
   </component>
 </project>
