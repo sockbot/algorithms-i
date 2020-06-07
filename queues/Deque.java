@@ -83,8 +83,16 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
         }
+        // copy first Node
+        Node oldFirst = first;
+        // move the first pointer to the new first Node
+        first = first.next;
         this.size--;
-        return (Item) this.first;
+        // if this is the last Node in the list, null the last pointer too
+        if (this.isEmpty()) {
+            last = null;
+        }
+        return oldFirst.item;
     }
 
     // remove and return the item from the back
@@ -143,5 +151,10 @@ public class Deque<Item> implements Iterable<Item> {
         System.out.println(d.first.next.next == d.last);
         System.out.println(d.last.item == 234);
         System.out.println(d.last.next == null);
+        System.out.println(d.removeFirst() == 123);
+        System.out.println(d.removeFirst() == 1);
+        System.out.println(d.removeFirst() == 234);
+        System.out.println(d.first == null);
+        System.out.println(d.last == null);
     }
 }
