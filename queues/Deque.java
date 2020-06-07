@@ -41,6 +41,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = new Node();
             first.item = item;
             first.next = null;
+            last = first;
         }
         else {
             // create new node
@@ -59,6 +60,21 @@ public class Deque<Item> implements Iterable<Item> {
     public void addLast(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
+        if (this.isEmpty()) {
+            // create first node
+            last = new Node();
+            last.item = item;
+            last.next = null;
+            first = last;
+        }
+        else {
+            // create new node
+            Node newLast = new Node();
+            newLast.item = item;
+            newLast.next = null;
+            last.next = newLast;
+            last = newLast;
+        }
         this.size++;
     }
 
@@ -111,14 +127,21 @@ public class Deque<Item> implements Iterable<Item> {
         Deque<Integer> d = new Deque<Integer>();
         System.out.println(d.isEmpty());
         d.addFirst(1);
-        System.out.println(d.isEmpty());
-        System.out.println(d.first.item);
-        System.out.println(d.first.next);
+        System.out.println(!d.isEmpty());
+        System.out.println(d.first.item == 1);
+        System.out.println(d.first.next == null);
+        System.out.println(d.last.item == 1);
+        System.out.println(d.last.next == null);
         d.addFirst(123);
-        System.out.println(d.isEmpty());
-        System.out.println(d.first.item);
+        System.out.println(!d.isEmpty());
+        System.out.println(d.first.item == 123);
         System.out.println(d.first.next);
-        System.out.println(d.last.item);
-        System.out.println(d.last.next);
+        System.out.println(d.last.item == 1);
+        System.out.println(d.last.next == null);
+        d.addLast(234);
+        System.out.println(d.first.item == 123);
+        System.out.println(d.first.next.next == d.last);
+        System.out.println(d.last.item == 234);
+        System.out.println(d.last.next == null);
     }
 }
