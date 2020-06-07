@@ -9,11 +9,14 @@ import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
 
-    private Node first, last;
+    private Node first;
+    private Node last;
     private int size = 0;
 
     // construct an empty deque
     public Deque() {
+        this.first = new Node();
+        this.last = this.first;
     }
 
     // is the deque empty?
@@ -26,10 +29,19 @@ public class Deque<Item> implements Iterable<Item> {
         return this.size;
     }
 
+    private class Node {
+        Item item;
+        Node next;
+    }
+
     // add the item to the front
     public void addFirst(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
+        Node newFirst = new Node();
+        newFirst.item = item;
+        newFirst.next = first;
+        first = newFirst;
         this.size++;
     }
 
@@ -46,6 +58,7 @@ public class Deque<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
         }
         this.size--;
+        return (Item) this.first;
     }
 
     // remove and return the item from the back
@@ -54,6 +67,7 @@ public class Deque<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
         }
         this.size--;
+        return (Item) this.first;
     }
 
     // return an iterator over items in order from front to back
@@ -61,17 +75,12 @@ public class Deque<Item> implements Iterable<Item> {
         return new ListIterator();
     }
 
-    private class Node {
-        Item item;
-        Node next;
-    }
-
     private class ListIterator implements Iterator<Item> {
 
         private Node current = first;
 
         public boolean hasNext() {
-            return this.current != null;
+            return this.current.next != null;
         }
 
         public Item next() {
@@ -89,6 +98,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {
+        Deque<Integer> d = new Deque<Integer>();
+        System.out.println(d.isEmpty());
     }
-
 }
