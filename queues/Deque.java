@@ -15,8 +15,6 @@ public class Deque<Item> implements Iterable<Item> {
 
     // construct an empty deque
     public Deque() {
-        this.first = new Node();
-        this.last = this.first;
     }
 
     // is the deque empty?
@@ -38,11 +36,23 @@ public class Deque<Item> implements Iterable<Item> {
     public void addFirst(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
-        Node newFirst = new Node();
-        newFirst.item = item;
-        newFirst.next = first;
-        first = newFirst;
+        if (this.isEmpty()) {
+            // create first node
+            first = new Node();
+            first.item = item;
+            first.next = null;
+        }
+        else {
+            // create new node
+            Node newFirst = new Node();
+            newFirst.item = item;
+            newFirst.next = first;
+            first = newFirst;
+        }
         this.size++;
+        if (this.size == 2) {
+            last = first.next;
+        }
     }
 
     // add the item to the back
@@ -100,5 +110,15 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<Integer> d = new Deque<Integer>();
         System.out.println(d.isEmpty());
+        d.addFirst(1);
+        System.out.println(d.isEmpty());
+        System.out.println(d.first.item);
+        System.out.println(d.first.next);
+        d.addFirst(123);
+        System.out.println(d.isEmpty());
+        System.out.println(d.first.item);
+        System.out.println(d.first.next);
+        System.out.println(d.last.item);
+        System.out.println(d.last.next);
     }
 }
