@@ -11,7 +11,6 @@ public class Deque<Item> implements Iterable<Item> {
 
     private Node first;
     private Node last;
-    private Node penultimate;
     private int size = 0;
 
     // construct an empty deque
@@ -31,6 +30,11 @@ public class Deque<Item> implements Iterable<Item> {
     private class Node {
         Item item;
         Node next;
+
+        public Node(Item item, Node next) {
+            this.item = item;
+            this.next = next;
+        }
     }
 
     // add the item to the front
@@ -39,22 +43,17 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException();
         if (this.isEmpty()) {
             // create first node
-            first = new Node();
-            first.item = item;
-            first.next = null;
+            first = new Node(item, null);
             last = first;
         }
         else {
             // create new node
-            Node newFirst = new Node();
-            newFirst.item = item;
-            newFirst.next = first;
+            Node newFirst = new Node(item, first);
             first = newFirst;
         }
         this.size++;
         if (this.size == 2) {
             last = first.next;
-            penultimate = first;
         }
     }
 
@@ -64,18 +63,13 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException();
         if (this.isEmpty()) {
             // create first node
-            last = new Node();
-            last.item = item;
-            last.next = null;
+            last = new Node(item, null);
             first = last;
         }
         else {
             // create new node
-            Node newLast = new Node();
-            newLast.item = item;
-            newLast.next = null;
+            Node newLast = new Node(item, null);
             last.next = newLast;
-            penultimate = last;
             last = newLast;
         }
         this.size++;
@@ -91,9 +85,6 @@ public class Deque<Item> implements Iterable<Item> {
         // move the first pointer to the new first Node
         first = first.next;
         this.size--;
-        if (this.size == 1) {
-            penultimate = null;
-        }
         // if this is the last Node in the list, null the last pointer too
         if (this.isEmpty()) {
             last = null;
@@ -106,8 +97,27 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
         }
+        Node oldLast = last;
+        if (this.size == 1) {
+            first = null;
+            last = null;
+        }
+        if (this.size > 1) {
+            Node penultimate = getPenultimate();
+            last = penultimate;
+            penultimate.next = null;
+        }
         this.size--;
-        return (Item) this.first;
+        return oldLast.item;
+    }
+
+    public Node getPenultimate() {
+        if (this.size < 2)
+            throw new NoSuchElementException();
+        Node penultimate = first;
+        while (penultimate.next.next != null)
+            penultimate = penultimate.next;
+        return penultimate;
     }
 
     // return an iterator over items in order from front to back
@@ -152,14 +162,17 @@ public class Deque<Item> implements Iterable<Item> {
         System.out.println(d.first.next);
         System.out.println(d.last.item == 1);
         System.out.println(d.last.next == null);
+        System.out.println("----------------");
+        System.out.println(d.getPenultimate().item == 123);
         d.addLast(234);
+        System.out.println(d.getPenultimate().item == 1);
         System.out.println(d.first.item == 123);
         System.out.println(d.first.next.next == d.last);
         System.out.println(d.last.item == 234);
         System.out.println(d.last.next == null);
         System.out.println(d.removeFirst() == 123);
+        System.out.println(d.removeLast() == 234);
         System.out.println(d.removeFirst() == 1);
-        System.out.println(d.removeFirst() == 234);
         System.out.println(d.first == null);
         System.out.println(d.last == null);
     }
