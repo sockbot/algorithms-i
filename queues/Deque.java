@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 public class Deque<Item> implements Iterable<Item> {
 
     private Node first, last;
+    private int size = 0;
 
     // construct an empty deque
     public Deque() {
@@ -17,24 +18,26 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty() {
-        return true;
+        return this.size == 0;
     }
 
     // return the number of items on the deque
     public int size() {
-        return 0;
+        return this.size;
     }
 
     // add the item to the front
     public void addFirst(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
+        this.size++;
     }
 
     // add the item to the back
     public void addLast(Item item) {
         if (item == null)
             throw new IllegalArgumentException();
+        this.size++;
     }
 
     // remove and return the item from the front
@@ -42,6 +45,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
         }
+        this.size--;
     }
 
     // remove and return the item from the back
@@ -49,13 +53,13 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
         }
+        this.size--;
     }
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator() {
         return new ListIterator();
     }
-
 
     private class Node {
         Item item;
