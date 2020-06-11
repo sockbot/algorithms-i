@@ -58,8 +58,15 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
-        return 0;
+        double deltaY = that.y - this.y;
+        double deltaX = that.x - this.x;
+        if (that.y == this.y && that.x == this.x)
+            return Double.NEGATIVE_INFINITY;
+        if (deltaY == 0)
+            return +0.0;
+        if (deltaX == 0)
+            return Double.POSITIVE_INFINITY;
+        return deltaY / deltaX;
     }
 
     /**
@@ -113,5 +120,13 @@ public class Point implements Comparable<Point> {
         Point b = new Point(2, 2);
         System.out.println(a.compareTo(b) < 0);
         System.out.println(b.compareTo(a) > 0);
+        System.out.println(a.slopeTo(b) == 1.0);
+        System.out.println(b.slopeTo(a) == 1.0);
+        Point c = new Point(0, 0);
+        Point d = new Point(0, 1);
+        Point e = new Point(1, 0);
+        System.out.println(c.slopeTo(d) == Double.POSITIVE_INFINITY);
+        System.out.println(e.slopeTo(c) == +0.0);
+        System.out.println(e.slopeTo(e) == Double.NEGATIVE_INFINITY);
     }
 }
