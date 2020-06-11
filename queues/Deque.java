@@ -111,7 +111,7 @@ public class Deque<Item> implements Iterable<Item> {
         return oldLast.item;
     }
 
-    public Node getPenultimate() {
+    private Node getPenultimate() {
         if (this.size < 2)
             throw new NoSuchElementException();
         Node penultimate = first;
@@ -130,7 +130,7 @@ public class Deque<Item> implements Iterable<Item> {
         private Node current = first;
 
         public boolean hasNext() {
-            return this.current.next != null;
+            return current != null;
         }
 
         public Item next() {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="set Node properties in constructor; getPenultimate function">
+    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="fix bug in ListIterator.hasNext, privatize getPenultimate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deque$ListIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/Deque$ListIterator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deque$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/Deque$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deque.class" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queues.zip" beforeDir="false" afterPath="$PROJECT_DIR$/queues.zip" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +98,10 @@
     <MESSAGE value="implement removeFirst and unit tests" />
     <MESSAGE value="move assignment of Node properties into constructor" />
     <MESSAGE value="remove tracking of penultimate" />
+    <MESSAGE value="set Node properties in constructor; getPenultimate function; implement removeLast" />
     <MESSAGE value="set Node properties in constructor; getPenultimate function" />
-    <option name="LAST_COMMIT_MESSAGE" value="set Node properties in constructor; getPenultimate function" />
+    <MESSAGE value="privatize getPenultimate" />
+    <MESSAGE value="fix bug in ListIterator.hasNext, privatize getPenultimate" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug in ListIterator.hasNext, privatize getPenultimate" />
   </component>
 </project>
