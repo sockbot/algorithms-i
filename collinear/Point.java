@@ -62,12 +62,19 @@ public class Point implements Comparable<Point> {
     public double slopeTo(Point that) {
         double deltaY = that.y - this.y;
         double deltaX = that.x - this.x;
+
+        // degenerate points
         if (that.y == this.y && that.x == this.x)
             return Double.NEGATIVE_INFINITY;
+
+        // horizontal slope
         if (deltaY == 0)
             return +0.0;
+
+        // vertical slope
         if (deltaX == 0)
             return Double.POSITIVE_INFINITY;
+
         return deltaY / deltaX;
     }
 
@@ -88,6 +95,8 @@ public class Point implements Comparable<Point> {
             return -1;
         if (this.x == that.y && this.x < that.x)
             return -1;
+        if (this.x == that.x && this.y == that.y)
+            return 0;
         return 1;
     }
 
@@ -96,7 +105,10 @@ public class Point implements Comparable<Point> {
      */
     private class SlopeOrder implements Comparator<Point> {
         public int compare(Point p1, Point p2) {
-            return 0;
+            double s1 = Point.this.slopeTo(p1);
+            double s2 = Point.this.slopeTo(p2);
+
+            return Double.compare(s1, s2);
         }
     }
 
