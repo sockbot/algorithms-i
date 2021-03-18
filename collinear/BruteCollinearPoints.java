@@ -11,17 +11,16 @@ public class BruteCollinearPoints {
             throw new IllegalArgumentException();
 
         Set<Point> set = new HashSet<Point>();
-        for (Point point : points) {
-            if (point == null || !set.add(point))
+
+        for (int i = 0; i < points.length; i++) {
+            if (points[i] == null || !set.add(points[i]))
                 throw new IllegalArgumentException();
         }
-
-        
     }
 
     // the number of line segments
     public int numberOfSegments() {
-        return -1;
+        return this.segments.length + 1;
     }
 
     // the line segments
