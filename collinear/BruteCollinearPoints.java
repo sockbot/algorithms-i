@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
 public class BruteCollinearPoints {
 
@@ -10,10 +9,10 @@ public class BruteCollinearPoints {
         if (points == null)
             throw new IllegalArgumentException();
 
-        Set<Point> set = new HashSet<Point>();
+        Arrays.sort(points);
 
         for (int i = 0; i < points.length; i++) {
-            if (points[i] == null || !set.add(points[i]))
+            if (points[i] == null || (i > 0 && points[i].equals(points[i - 1])))
                 throw new IllegalArgumentException();
         }
     }
