@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="" />
+    <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../collinear/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../collinear/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collinear/BruteCollinearPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/../collinear/BruteCollinearPoints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +32,11 @@
     <analyzeAfterCompile>true</analyzeAfterCompile>
     <toolWindowToFront>false</toolWindowToFront>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1psBO9MFSrpM0hblU7YfdqqWqip" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="autoscrollFromSource" value="true" />
@@ -37,15 +47,28 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ToolWindowMessages.ShowToolbar" value="false" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.RandomWord">
+    <configuration name="HelloGoodbye" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="HelloGoodbye" />
+      <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="Kevin Bob" />
+      <method v="2" />
+    </configuration>
     <configuration name="HelloWorld" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="HelloWorld" />
       <module name="Algorithms, Part I" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RandomWord" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="RandomWord" />
+      <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="&lt; animals8.txt" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -61,26 +84,39 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement HelloGoodbye class" />
+    <MESSAGE value="Implement RandomWord class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement RandomWord class" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="841" y="177" key="#Auto_Import" timestamp="1615961987589">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state x="841" y="177" key="#Auto_Import/0.23.1440.797@0.23.1440.797" timestamp="1615961987589" />
-    <state width="720" height="220" key="GridCell.Tab.0.bottom" timestamp="1615962819467">
+    <state x="307" y="23" key="CommitChangelistDialog2" timestamp="1615968080627">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state width="720" height="220" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1615962819467" />
-    <state width="720" height="220" key="GridCell.Tab.0.center" timestamp="1615962819465">
+    <state x="307" y="23" key="CommitChangelistDialog2/0.23.1440.797@0.23.1440.797" timestamp="1615968080627" />
+    <state width="720" height="210" key="GridCell.Tab.0.bottom" timestamp="1615967657194">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state width="720" height="220" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1615962819465" />
-    <state width="720" height="220" key="GridCell.Tab.0.left" timestamp="1615962819465">
+    <state width="720" height="210" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1615967657194" />
+    <state width="720" height="210" key="GridCell.Tab.0.center" timestamp="1615967657192">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state width="720" height="220" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1615962819465" />
-    <state width="720" height="220" key="GridCell.Tab.0.right" timestamp="1615962819466">
+    <state width="720" height="210" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1615967657192" />
+    <state width="720" height="210" key="GridCell.Tab.0.left" timestamp="1615967657192">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state width="720" height="220" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1615962819466" />
+    <state width="720" height="210" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1615967657192" />
+    <state width="720" height="210" key="GridCell.Tab.0.right" timestamp="1615967657193">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="720" height="210" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1615967657193" />
+    <state x="538" y="161" key="Vcs.Push.Dialog.v2" timestamp="1615968094201">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="538" y="161" key="Vcs.Push.Dialog.v2/0.23.1440.797@0.23.1440.797" timestamp="1615968094201" />
   </component>
 </project>
